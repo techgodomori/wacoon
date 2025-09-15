@@ -12,6 +12,9 @@ import PricingPage from './pages/PricingPage';
 import PaymentPage from './pages/PaymentPage';
 import VendorDashboard from './pages/VendorDashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import SignupPage from './pages/SignupPage';
+import ProfilePage from './pages/ProfilePage';
+import ChatPage from './pages/ChatPage';
 import AboutPage from './pages/AboutPage';
 import HelpPage from './pages/HelpPage';
 
@@ -27,8 +30,11 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/create-promotion" element={<CreatePromotionPage />} />
           <Route path="/auth" element={<AuthPage />} />
-          <Route path="/signup" element={<AuthPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<AuthPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
+          <Route path="/chat/:id" element={<ChatPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/vendor-dashboard" element={<VendorDashboard />} />

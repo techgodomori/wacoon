@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { 
   TrendingUp, DollarSign, Users, MessageCircle, Calendar, 
-  BarChart3, PieChart, Target, Clock, Star, Award 
+  BarChart3, PieChart, Target, Clock, Star, Award, Plus 
 } from 'lucide-react';
 import { mockAnalytics, mockTransactions } from '../utils/mockData';
 
@@ -39,6 +40,13 @@ const VendorDashboard: React.FC = () => {
               <p className="text-gray-600">Track your business performance and customer engagement</p>
             </div>
             <div className="mt-4 sm:mt-0 flex items-center space-x-4">
+              <Link
+                to="/create-promotion"
+                className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200"
+              >
+                <Plus className="h-5 w-5" />
+                <span>Create Promotion</span>
+              </Link>
               <select
                 value={timeRange}
                 onChange={(e) => setTimeRange(e.target.value)}
