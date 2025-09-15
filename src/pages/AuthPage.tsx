@@ -6,13 +6,14 @@ import { Link } from 'react-router-dom';
 const AuthPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [userType, setUserType] = useState<'user' | 'vendor'>('user');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     password: '',
     confirmPassword: '',
-    userType: 'individual',
+    accountType: 'individual',
     whatsappNumber: ''
   });
 
@@ -73,6 +74,32 @@ const AuthPage: React.FC = () => {
             </button>
           </div>
 
+          {/* User Type Toggle for Sign Up */}
+          {!isLogin && (
+            <div className="flex bg-white/10 rounded-2xl p-1 mb-6">
+              <button
+                onClick={() => setUserType('user')}
+                className={`flex-1 py-2 px-4 rounded-xl font-medium transition-all duration-200 ${
+                  userType === 'user' 
+                    ? 'bg-white text-purple-600 shadow-lg' 
+                    : 'text-white hover:bg-white/10'
+                }`}
+              >
+                Sign up as User
+              </button>
+              <button
+                onClick={() => setUserType('vendor')}
+                className={`flex-1 py-2 px-4 rounded-xl font-medium transition-all duration-200 ${
+                  userType === 'vendor' 
+                    ? 'bg-white text-purple-600 shadow-lg' 
+                    : 'text-white hover:bg-white/10'
+                }`}
+              >
+                Sign up as Vendor
+              </button>
+            </div>
+          )}
+
           {/* Form */}
           <form className="space-y-6">
             {!isLogin && (
@@ -126,16 +153,25 @@ const AuthPage: React.FC = () => {
 
             {!isLogin && (
               <div>
-                <label className="block text-white text-sm font-medium mb-2">User Type</label>
+                <label className="block text-white text-sm font-medium mb-2">Account Type</label>
                 <select
-                  name="userType"
-                  value={formData.userType}
+                  name="accountType"
+                  value={formData.accountType}
                   onChange={handleInputChange}
                   className="w-full p-3 bg-white/10 border border-white/20 rounded-xl text-white focus:ring-2 focus:ring-white/50 focus:border-transparent backdrop-blur-sm"
                 >
-                  <option value="individual" className="text-gray-900">Individual</option>
-                  <option value="business" className="text-gray-900">Business</option>
-                  <option value="community" className="text-gray-900">Community</option>
+                  {userType === 'user' ? (
+                    <>
+                      <option value="individual" className="text-gray-900">Individual</option>
+                      <option value="community" className="text-gray-900">Community</option>
+                    </>
+                  ) : (
+                    <>
+                      <option value="business" className="text-gray-900">Business</option>
+                      <option value="freelancer" className="text-gray-900">Freelancer</option>
+                      <option value="service_provider" className="text-gray-900">Service Provider</option>
+                    </>
+                  )}
                 </select>
               </div>
             )}
@@ -192,11 +228,26 @@ const AuthPage: React.FC = () => {
             )}
 
             <Link
-              to="/dashboard"
+              to={userType === 'vendor' ? '/vendor-dashboard' : '/dashboard'}
               className="w-full bg-white text-purple-600 py-4 px-6 rounded-xl font-bold text-center hover:shadow-lg hover:scale-105 transition-all duration-200 block"
             >
               {isLogin ? 'Sign In' : 'Create Account'}
             </Link>
+
+            {isLogin && (
+              <div className="text-center">
+                <p className="text-white/80 text-sm">
+                  Don't have an account?{' '}
+                  <button
+                    type="button"
+                    onClick={() => setIsLogin(false)}
+                    className="text-white underline hover:no-underline font-semibold"
+                  >
+                    Sign up
+                  </button>
+                </p>
+              </div>
+            )}
 
             {!isLogin && (
               <p className="text-white/80 text-sm text-center">

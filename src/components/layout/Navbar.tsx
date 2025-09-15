@@ -58,11 +58,11 @@ const Navbar: React.FC = () => {
             </Link>
 
             <Link
-              to="/create-promotion"
+              to="/signup"
               className="hidden md:flex items-center space-x-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all duration-200"
             >
               <Plus className="h-4 w-4" />
-              <span>Create</span>
+              <span>Sign Up</span>
             </Link>
 
             {/* Mobile Menu Button */}

@@ -49,7 +49,7 @@ const HeroSection: React.FC = () => {
               </Link>
               
               <Link
-                to="/create-promotion"
+                to="/auth"
                 className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-purple-600 transition-all duration-200"
               >
                 Start Selling
